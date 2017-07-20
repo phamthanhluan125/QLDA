@@ -4,8 +4,8 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :name
       t.date :birthday
       t.boolean :gender
-      t.string :email
       t.string :address
+      t.string :avatar
       t.integer :status
       t.boolean :is_manager, default: false
 

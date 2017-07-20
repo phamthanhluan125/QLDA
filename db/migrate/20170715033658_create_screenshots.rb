@@ -3,7 +3,7 @@ class CreateScreenshots < ActiveRecord::Migration[5.0]
     create_table :screenshots do |t|
       t.string :image
       t.integer :status
-      t.references :time_sheet, foreign_key: true
+      t.references :timesheet, foreign_key: true
 
       t.timestamps
     end
