@@ -1,0 +1,2 @@
+class Massange < ApplicationRecord
+end

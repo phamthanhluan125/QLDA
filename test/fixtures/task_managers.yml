@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  note: MyText
+  start_date: 2017-07-15
+  deadline: 2017-07-15
+  finish_date: 2017-07-15
+  status: 1
+  user: MyString
+
+two:
+  note: MyText
+  start_date: 2017-07-15
+  deadline: 2017-07-15
+  finish_date: 2017-07-15
+  status: 1
+  user: MyString

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  info: MyText
+  status: 1
+  form: 1
+  to: 1
+
+two:
+  info: MyText
+  status: 1
+  form: 1
+  to: 1
