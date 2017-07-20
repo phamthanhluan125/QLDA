@@ -23,7 +23,7 @@ gem "json"
 gem "mysql2", ">= 0.3.18", "< 0.5"
 gem "roo"
 gem "roo-xls"
-gem "sweet-alert-confirm"
+gem "font-awesome-sass"
 
 group :development, :test do
   gem "byebug", platform: :mri

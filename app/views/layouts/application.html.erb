@@ -3,12 +3,27 @@
   <head>
     <title>QLDAServer</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="wrapper">
+      <div class="sidebar" data-color="purple" data-image="/assets/img/sidebar-1.jpg" alt="rss feed">
+        <%= render "layouts/slidebar" %>
+      </div>
+      <div class="main-panel">
+        <nav class="navbar navbar-transparent navbar-absolute">
+          <%= render "layouts/header" %>
+        </nav>
+        <div class="content">
+          <%= yield %>
+        </div>
+        <footer class="footer">
+          <%= render "layouts/footer"  %>
+        </footer>
+      </div>
+    </div>
   </body>
 </html>
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
