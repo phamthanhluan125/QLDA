@@ -1,0 +1,107 @@
+/*flash*/
+.alert-error {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
+}
+
+.alert-alert {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
+}
+
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
+}
+
+.alert-notice {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
+}
+
+.page-login {
+  background: url("/assets/login-bg.jpg") no-repeat center center fixed;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  .panel-opacity {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    z-index: 2;
+    opacity: 0.8;
+  }
+  .title {
+    position: absolute;
+    text-transform: uppercase;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 35px;
+    padding-top: 50px;
+    color: white;
+    z-index: 3;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px black;
+  }
+  .form-login {
+    width: 550px;
+    height: 310px;
+    background: rgba(0, 0, 0, 0.36);
+    position: absolute;
+    z-index: 4;
+    margin-top: 11%;
+    left: 50%;
+    text-align: center;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    .form-title {
+      padding-top: 10px;
+      font-size: 30px;
+      color: white;
+    }
+    .login-group {
+      text-align: left;
+      div label {
+        padding-left: 20px;
+        padding-top: 20px;
+      }
+      div input {
+        margin-left: 10%;
+        width: 80%;
+        height: 40px;
+      }
+      .remember {
+        margin-left: 10%;
+        margin-top: 10px;
+      }
+      label {
+        color: white;
+      }
+    }
+    .btn-login {
+      width: 70%;
+      height: 40px;
+      font-size: 23px;
+      color: white;
+      background: rgba(206, 13, 13, 0.58);
+      border: none;
+      border-radius: 10px;
+    }
+    .btn-login:hover {
+      background: rgba(206, 13, 13, 1);
+      transition: 0.5s ease-in-out;
+    }
+  }
+}

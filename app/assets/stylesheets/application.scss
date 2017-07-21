@@ -13,6 +13,7 @@
  *= require sass/material-dashboard.scss
  *= require sweetalert.css
  *= require_self
+ *= require_tree ./design
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";

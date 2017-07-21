@@ -24,6 +24,7 @@ gem "mysql2", ">= 0.3.18", "< 0.5"
 gem "roo"
 gem "roo-xls"
 gem "font-awesome-sass"
+gem "pry-rails"
 
 group :development, :test do
   gem "byebug", platform: :mri

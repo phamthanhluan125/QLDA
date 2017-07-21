@@ -1,0 +1,35 @@
+<div class="wrapper">
+  <div class="page-login">
+    <span class="panel-opacity"></span>
+    <div class="title">
+      Ứng dụng quản lý dự án từ xa
+    </div>
+    <div class="form-login">
+      <div class="form-title">Đăng Nhập</div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="login-group">
+          <div><%= f.label :email %></div>
+          <div><%= f.email_field :email, autofocus: true %></div>
+        </div>
+
+        <div class="login-group">
+          <div><%= f.label :password %></div>
+          <div><%= f.password_field :password, autocomplete: "off" %></div>
+        </div>
+
+        <% if devise_mapping.rememberable? -%>
+          <div class="login-group">
+            <%= f.check_box :remember_me, class: "remember" %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+
+        <div class="actions">
+          <%= f.submit "Log in", class: "btn-login" %>
+        </div>
+      <% end %>
+
+     <!--  <%= render "devise/shared/links" %> -->
+    </div>
+  </div>
+</div>
