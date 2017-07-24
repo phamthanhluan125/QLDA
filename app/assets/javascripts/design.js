@@ -49,50 +49,50 @@ function compare_date(date1, date2) {
 function validate_time_start_deadline_project(){
   $('.date-start').change(function(){
     var date_start = $(this).val();
-    debugger
-    if($(this).parents('.row').find('.limit-time').length > 0) {
-      date_limit_start = $(this).parents('.row').find('.limit-time').data('start');
-      date_limit_end = $(this).parents('.row').find('.limit-time').data('end');
+    var date_end = $(this).closest('.row').find('.date-end').val();
+    if($(this).closest('.row').find('.limit-time').length > 0) {
+      date_limit_start = $(this).closest('.row').find('.limit-time').data('start');
+      date_limit_end = $(this).closest('.row').find('.limit-time').data('end');
       if(compare_date(date_limit_start, date_start)) {
         sweetAlert('Lỗi!!!', 'Công việc không thể bắt đầu trước ngày bắt đầu '
-          + $(this).parents('.row').find('.limit-time').data('name') + '('
+          + $(this).closest('.row').find('.limit-time').data('name') + '('
           + date_limit_start +  ')', 'error');
         $(this).val(date_limit_start);
         return;
       }
+      if(date_end.length > 0) {
+        if(compare_date(date_start, date_end)){
+          sweetAlert('Lỗi!!!', 'Ngày bắt đầu phải nhỏ hơn ngày kết thúc.', 'error');
+          $(this).val(date_end);
+          return;
+        }
+      }
       if(compare_date(date_start, date_limit_end)) {
         sweetAlert('Cảnh báo!!!', 'Thời gian chọn lớn hơn thời gian kết thúc dự kiến của '
-          + $(this).parents('.row').find('.limit-time').data('name') + '('
-          + date_limit_start +  '). Thời gian chọn này có thể làm cho '
-          + $(this).parents('.row').find('.limit-time').data('name') + ' chậm tiến độ.', 'warning');
+          + $(this).closest('.row').find('.limit-time').data('name') + '('
+          + date_limit_end +  '). Thời gian chọn này có thể làm cho '
+          + $(this).closest('.row').find('.limit-time').data('name') + ' chậm tiến độ.', 'warning');
         return;
-      }
-    }
-    var date_end = $('.date-end').val();
-    if(date_end.length > 0) {
-      if(compare_date(date_start, date_end)){
-        sweetAlert('Lỗi!!!', 'Ngày bắt đầu phải nhỏ hơn ngày kết thúc.', 'error');
-        $(this).val(date_end);
       }
     }
   });
   $('.date-end').change(function(){
     var date_end = $(this).val();
-    if($(this).parents('.row').find('.limit-time').length > 0) {
-      date_limit_end = $(this).parents('.row').find('.limit-time').data('end');
-      if(compare_date(date_end, date_limit_end)) {
-        sweetAlert('Cảnh báo!!!', 'Thời gian chọn lớn hơn thời gian kết thúc dự kiến của '
-          + $(this).parents('.row').find('.limit-time').data('name') + '('
-          + date_limit_start +  '). Thời gian chọn này có thể làm cho '
-          + $(this).parents('.row').find('.limit-time').data('name') + ' chậm tiến độ.', 'warning');
-        return;
-      }
-    }
-    var date_start = $('.date-start').val();
+    var date_start = $(this).closest('.row').find('.date-start').val();
     if(date_start.length > 0) {
       if(compare_date(date_start, date_end)){
         sweetAlert('Lỗi!!!', 'Ngày kết thúc phải lớn hơn ngày bắt đầu.', 'error');
         $(this).val(date_start);
+        return
+      }
+    }
+    if($(this).closest('.row').find('.limit-time').length > 0) {
+      date_limit_end = $(this).closest('.row').find('.limit-time').data('end');
+      if(compare_date(date_end, date_limit_end)) {
+        sweetAlert('Cảnh báo!!!', 'Thời gian chọn lớn hơn thời gian kết thúc dự kiến của '
+          + $(this).closest('.row').find('.limit-time').data('name') + '('
+          + date_limit_end +  '). Thời gian chọn này có thể làm cho '
+          + $(this).closest('.row').find('.limit-time').data('name') + ' chậm tiến độ.', 'warning');
       }
     }
   });
@@ -127,9 +127,20 @@ function ajax_change_choose_project() {
   });
 }
 
+
+function alert_finish_cancel_project() {
+  $('.btn-finish-project-error').click(function(){
+    sweetAlert('Lỗi!!!', 'Chỉ được đánh dấu hoàn thành khi tất cả các task đả được hoàn thành(hoặc hủy).', 'error');
+  });
+  $('.btn-cancel-project-error').click(function(){
+    sweetAlert('Lỗi!!!', 'Chỉ được hủy dự án khi dự án đó chưa bắt đầu', 'error');
+  });
+}
+
 $(document).ready(function(){
   validate_time_start_deadline_project();
   ajax_change_choose_project();
+  alert_finish_cancel_project();
 
   $('.btn-user-edit').click(function(){
     load_input();
@@ -138,8 +149,19 @@ $(document).ready(function(){
   $('.upload-img').change(function(e){
     readURL(this);
   });
+
   $('.date').bootstrapMaterialDatePicker({
     format: 'DD/MM/YYYY',
     time: false
+  });
+
+  $('.btn-show-modal').click(function(){
+    id = $(this).attr('href');
+    var top = $('.main-panel').scrollTop() - 50;
+    $(id).css('margin-top', (top + 'px'));
+    $('.main-panel').scroll(function(){
+      var top = $('.main-panel').scrollTop() - 50;
+      $(id).css('margin-top', (top + 'px'));
+    });
   });
 });

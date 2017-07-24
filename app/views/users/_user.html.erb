@@ -7,7 +7,8 @@
   <td><%= l user.created_at, format: "%d/%m/%Y" %></td>
   <td><%= load_status user %></td>
   <td class="td-actions text-right">
-    <button type="button" rel="tooltip" title="" class="btn-user-edit btn btn-success btn-simple btn-xs"
+    <button type="button" rel="tooltip" title="" class="btn-user-edit btn
+      btn-success btn-simple btn-xs btn-show-modal"
       data-original-title="Chỉnh sửa thông tin" data-toggle="modal" href="#edit-user-<%= user.id %>"
       data-id="<%= user.id %>">
       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

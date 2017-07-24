@@ -1,0 +1,88 @@
+<tr class="user-item">
+  <td><%= task.name %></td>
+  <td><%= task.info %></td>
+  <td><%= l task.start_date %></td>
+  <td><%= l task.deadline %></td>
+  <td><%= task.users.size %></td>
+  <td><%= load_status_model task %></td>
+  <td class="td-actions text-right">
+    <button type="button" rel="tooltip" title="" class="<%= check_btn_edit task %>
+      btn-user-edit btn btn-success btn-simple btn-xs btn-show-modal" data-original-title="
+      Chỉnh sửa thông tin" data-toggle="modal" href="#edit-task-<%= task.id %>">
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      <div class="ripple-container"></div>
+    </button>
+    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs"
+     data-original-title="Chi tiết">
+      <i class="fa fa-line-chart" aria-hidden="true"></i>
+    </button>
+    <button type="button" rel="tooltip" class="<%= check_btn_delete task %>
+      btn btn-danger btn-simple" data-original-title="Xóa" title="">
+      <i class="fa fa-trash" aria-hidden="true"></i>
+    </button>
+  </td>
+</tr>
+
+<%= form_for task, url: task_path(task.id), method: :put do |f| %>
+  <div class="modal fade" id="edit-task-<%= task.id %>">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Chỉnh sửa task</h4>
+        </div>
+        <div class="modal-body">
+          <div class="card">
+            <div class="card-content">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group label-floating is-empty">
+                      <label class="control-label">Tên</label>
+                      <%= f.text_field :name, maxlength: 3000, minlength: 6, required: true,
+                        class: "form-control" %>
+                      <span class="material-input"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group label-floating is-empty">
+                      <label class="control-label">Mô tả</label>
+                      <%= f.text_area :info, maxlength: 3000, minlength: 6, class: "form-control" %>
+                      <span class="material-input"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <%= hidden_field "", "", data: {start: l(@project.start_date),
+                    end: l(@project.deadline), name: "task"}, class: "limit-time" %>
+                  <div class="col-md-6">
+                    <div class="form-group label-floating is-empty">
+                      <label class="control-label">Thời gian bắt đầu</label>
+                      <%= f.text_field :start_date, required: true, class: "date date-start form-control" %>
+                      <span class="material-input"></span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group label-floating is-empty">
+                      <label class="control-label">Deadline</label>
+                      <%= f.text_field :deadline, required: true, class: "date date-end form-control" %>
+                      <span class="material-input"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= link_to "Hủy", "javascript:", class: "btn btn-default", "data-dismiss": "modal" %>
+          <%= f.submit "Hoàn tất", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

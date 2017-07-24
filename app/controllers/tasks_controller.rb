@@ -1,21 +1,6 @@
 class TasksController < ApplicationController
   before_action :load_task, only: :update
-
-  def index
-    @projects = Project.of_admin current_admin.id
-    if @projects.present?
-      if params[:choose_id].present?
-        @choose_project = Project.find_by id: params[:choose_id]
-        unless @choose_project.present?
-          flash[:danger] = "Load lỗi!!!"
-          redirect_to root_path
-        end
-      else
-        @choose_project = @projects.first
-      end
-      @tasks = Task.of_project @choose_project.id
-    end
-  end
+  before_action :load_project
 
   def update
     if @task.update_attributes task_params
@@ -51,6 +36,14 @@ class TasksController < ApplicationController
     unless @task.present?
       flash[:danger] = "Không tìm thấy task."
       redirect_to tasks_path
+    end
+  end
+
+  def load_project
+    @project = Project.find_by id: params[:task][:project_id]
+    unless @project.present?
+      flash[:danger] = "Không tìm thấy dự án."
+      redirect_to projects_path
     end
   end
 end

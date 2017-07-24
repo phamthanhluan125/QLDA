@@ -9,8 +9,9 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    user_project_ids = ProjectManager.of_project(@project.id).map(&:user_id)
-    @users_not_project = User.not_ids user_project_ids
+    @user_projects = ProjectManager.of_project(@project.id)
+    @users_not_project = User.not_ids @user_projects.map(&:user_id)
+    @tasks = @project.tasks
   end
 
   def update
