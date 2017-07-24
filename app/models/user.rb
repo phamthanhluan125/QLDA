@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
     :recoverable, :rememberable, :trackable, :validatable
 
@@ -15,4 +19,13 @@ class User < ApplicationRecord
   has_many :to_messanges, class_name: "Messange", foreign_key: :to_id
   has_many :from_messanges, class_name: "Messange", foreign_key: :from_id
 
+  belongs_to :admin
+  belongs_to :role
+
+  enum status: {active: 0, locked: 1}
+
+  mount_uploader :avatar, AvatarUploader
+
+  scope :of_admin, -> admin_id {where admin_id: admin_id}
+  scope :not_ids, -> ids {where.not id: ids}
 end

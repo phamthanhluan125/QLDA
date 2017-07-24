@@ -12,6 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery.turbolinks
 //= require bootstrap
+//= require moment
 //= require_tree .
+//= require sweetalert/dist/sweetalert.min.js
+
+$(document).ready(function () {
+  setTimeout(function(){ $('.alert').fadeOut(3000);}, 5000);
+});

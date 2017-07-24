@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header" data-background-color="purple">
+          <h4 class="title">DANH SÁCH NHÂN VIÊN</h4>
+          <p class="category">Xem thông tin cá nhân, thông tin công việc, cập nhật profile...</p>
+        </div>
+        <div class="card-content table-responsive">
+          <div class="material-datatables">
+             <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+              <thead class="text-primary">
+                <tr>
+                  <th></th>
+                  <th>Tên</th>
+                  <th>Sinh nhật</th>
+                  <th>Chức vụ</th>
+                  <th>Giới tính</th>
+                  <th>Ngày tạo</th>
+                  <th>Trạng thái</th>
+                  <th>Chức năng</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= render partial: "user", collection: @users %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

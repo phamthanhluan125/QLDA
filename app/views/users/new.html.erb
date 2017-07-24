@@ -1,0 +1,113 @@
+<%= form_for User.new, url: users_path do |f| %>
+  <div class="card">
+    <div class="card-header" data-background-color="purple">
+      <h4 class="title">Thêm nhân viên mới</h4>
+      <p class="category"></p>
+    </div>
+    <div class="card-content">
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group label-floating is-empty">
+              <label class="control-label">Email</label>
+              <%= f.email_field :email, required: true, class: "form-control" %>
+              <span class="material-input"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group label-floating is-empty">
+              <label class="control-label">Tên</label>
+              <%= f.text_field :name, maxlength: 100, minlength: 6, required: true, class: "form-control" %>
+              <span class="material-input"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-9">
+            <div class="form-group label-floating is-empty">
+              <label class="control-label">Sinh nhật</label>
+              <%= f.text_field :birthday, class: "date form-control" %>
+              <span class="material-input"></span>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group label-floating is-empty">
+              <%= f.check_box :gender %>
+              <label> Nữ</label>
+              <span class="material-input"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group label-floating is-empty">
+              <label class="control-label">Địa chỉ</label>
+              <%= f.text_field :address, class: "form-control" %>
+              <span class="material-input"></span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group label-floating is-empty">
+              <label class="control-label">Thời gian chụp màn hình</label>
+              <%= f.number_field :time_scr, min:5, max: 120, class: "form-control" %>
+              <span class="material-input"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group label-floating is-empty">
+              <label>Trạng thái</label>
+              <%= f.select :status, options_for_select([["Hoạt động", :active],
+                ["Khoá", :locked]]), {}, class: "form-control" %>
+              <span class="material-input"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group label-floating is-empty">
+              <label>Chức vụ</label>
+              <%= f.select :role_id, @roles.collect{|r| [r.name, r.id]}, {},
+                class: "form-control" %>
+              <span class="material-input"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group label-floating is-empty">
+              <label class="control-label">Mật khẩu</label>
+              <%= f.text_field :password, maxlength: 100, minlength: 6, required: true,
+                type: "password", class: "form-control" %>
+              <span class="material-input"></span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <%= f.submit "Tạo nhân viên", class: "btn btn-primary pull-right" %>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group label-floating is-empty">
+              <label class="text-center">Chọn hình mới</label>
+              <%= image_tag "avatar-default",
+              class: "edit-user-avatar" %>
+              <%= f.file_field :avatar, accept: "image/jpeg, image/gif, image/png",
+              class: "upload-img hidden-file" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

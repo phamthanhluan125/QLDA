@@ -1,58 +1,70 @@
 <div class="logo">
-  <a href="http://www.creative-tim.com" class="simple-text">
-    Creative Tim
-  </a>
+  <%= link_to "QLDA", root_path, class: "simple-text" %>
 </div>
 
 <div class="sidebar-wrapper">
   <ul class="nav">
     <li class="active">
-      <a href="dashboard.html">
-        <i class="material-icons">dashboard</i>
-        <p>Dashboard</p>
-      </a>
+      <%= link_to "#" do %>
+        <i class="fa fa-tachometer" aria-hidden="true"></i>
+        <p>Thông tin tổng quát</p>
+      <% end %>
     </li>
     <li>
-      <a href="user.html">
-        <i class="material-icons">person</i>
-        <p>User Profile</p>
+      <a data-toggle="collapse" href="#pagesUsers">
+        <i class="fa fa-users" aria-hidden="true"></i>
+        <p>Quản lý nhân viên<b class="caret"></b></p>
       </a>
+      <div class="collapse" id="pagesUsers">
+        <ul class="nav">
+          <li>
+            <%= link_to "Thêm nhân viên mới", new_user_path %>
+          </li>
+          <li>
+            <%= link_to "Danh sách nhân viên", users_path %>
+          </li>
+        </ul>
+      </div>
     </li>
     <li>
-      <a href="table.html">
-        <i class="material-icons">content_paste</i>
-        <p>Table List</p>
+      <a data-toggle="collapse" href="#pagesProjects">
+        <i class="fa fa-server" aria-hidden="true"></i>
+        <p>Quản lý project<b class="caret"></b></p>
       </a>
+      <div class="collapse" id="pagesProjects">
+        <ul class="nav">
+          <li>
+            <%= link_to "Thêm dự án mới", new_project_path %>
+          </li>
+          <li>
+            <%= link_to "Danh sách dự án", projects_path %>
+          </li>
+        </ul>
+      </div>
     </li>
     <li>
-      <a href="typography.html">
+      <%= link_to tasks_path do %>
         <i class="material-icons">library_books</i>
-        <p>Typography</p>
-      </a>
+        <p>Quản lý task</p>
+      <% end %>
     </li>
     <li>
-      <a href="icons.html">
+      <%= link_to "#" do %>
         <i class="material-icons">bubble_chart</i>
-        <p>Icons</p>
-      </a>
+        <p>Quản lý timesheet</p>
+      <% end %>
     </li>
     <li>
-      <a href="maps.html">
+      <%= link_to "#" do %>
         <i class="material-icons">location_on</i>
         <p>Maps</p>
-      </a>
+      <% end %>
     </li>
     <li>
-      <a href="notifications.html">
+      <%= link_to "#" do %>
         <i class="material-icons text-gray">notifications</i>
         <p>Notifications</p>
-      </a>
-    </li>
-    <li class="active-pro">
-      <a href="upgrade.html">
-        <i class="material-icons">unarchive</i>
-        <p>Upgrade to PRO</p>
-      </a>
+      <% end %>
     </li>
   </ul>
 </div>

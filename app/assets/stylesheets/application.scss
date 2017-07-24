@@ -14,6 +14,7 @@
  *= require sweetalert.css
  *= require_self
  *= require_tree ./design
+ *= require sweetalert/dist/sweetalert.css
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";

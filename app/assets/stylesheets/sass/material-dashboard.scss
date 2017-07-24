@@ -14,6 +14,7 @@
 
  */
 
+
 //variables and mixins
 @import "md/variables";
 @import "md/mixins";
@@ -22,6 +23,7 @@
 //plugin css
 @import "md/plugins/_plugin-nouislider";
 @import "md/plugins/_animate";
+@import "md/plugins/datatables.net";
 
 // Core CSS
 @import "md/typography";

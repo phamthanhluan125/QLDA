@@ -13,11 +13,13 @@ gem "jquery-rails"
 gem "devise"
 gem "carrierwave",             "0.10.0"
 gem "carrierwave-base64"
+gem "mini_magick"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
 gem "coffee-rails", "~> 4.2"
 gem "jquery-rails"
 gem "turbolinks", "~> 5"
+gem "jquery-turbolinks"
 gem "jbuilder", "~> 2.5"
 gem "json"
 gem "mysql2", ">= 0.3.18", "< 0.5"
@@ -25,6 +27,7 @@ gem "roo"
 gem "roo-xls"
 gem "font-awesome-sass"
 gem "pry-rails"
+gem 'momentjs-rails', '>= 2.9.0'
 
 group :development, :test do
   gem "byebug", platform: :mri

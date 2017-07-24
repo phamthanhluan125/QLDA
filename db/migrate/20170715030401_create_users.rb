@@ -3,12 +3,13 @@ class CreateUsers < ActiveRecord::Migration[5.0]
     create_table :users do |t|
       t.string :name
       t.date :birthday
-      t.boolean :gender
+      t.boolean :gender, default: false
       t.string :address
       t.string :avatar
-      t.integer :status
-      t.boolean :is_manager, default: false
-
+      t.integer :time_scr
+      t.integer :status, default: 0
+      t.references :role, foreign_key: true
+      t.references :admin, foreign_key: true
       t.timestamps
     end
   end

@@ -1,0 +1,54 @@
+<%= form_for Project.new, url: projects_path do |f| %>
+  <div class="card">
+    <div class="card-header" data-background-color="purple">
+      <h4 class="title">Thêm dự án mới</h4>
+      <p class="category"></p>
+    </div>
+    <div class="card-content">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group label-floating is-empty">
+              <label class="control-label">Tên dự án</label>
+              <%= f.text_field :name, required: true, maxlength: 100, minlength: 6,
+                class: "form-control" %>
+              <span class="material-input"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group label-floating is-empty">
+              <label class="control-label">Mô tả</label>
+              <%= f.text_area :info, maxlength: 3000, minlength: 6, class: "form-control" %>
+              <span class="material-input"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group label-floating is-empty">
+              <label class="control-label">Thời gian bắt đầu</label>
+              <%= f.text_field :start_date, required: true, class: "date date-start form-control" %>
+              <span class="material-input"></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group label-floating is-empty">
+              <label class="control-label">Deadline</label>
+              <%= f.text_field :deadline, required: true, class: "date date-end form-control" %>
+              <span class="material-input"></span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <%= f.submit "Tạo dự án mới", class: "btn btn-primary pull-right" %>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
