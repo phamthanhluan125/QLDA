@@ -13,8 +13,9 @@
               <th>Sinh nhật</th>
               <th>Ngày tham gia dự án</th>
               <th>Chức vụ</th>
-              <th>Số task đã nhận</th>
-              <th>Số task đã hoàn thành</th>
+              <th>Task đã nhận</th>
+              <th>Task hoàn thành</th>
+              <th>Task hủy</th>
               <th>Chức năng</th>
             </tr>
           </thead>
@@ -25,9 +26,16 @@
               <td><%= l item.user.birthday %></td>
               <td><%= l item.created_at, format: "%d/%m/%Y" %></td>
               <td><%= item.user.role.name %></td>
-              <td><%= item.user.tasks.size %></td>
-              <td><%= item.user.tasks.finish.size %></td>
-              <td></td>
+              <td><%= item.user.task_managers.size %></td>
+              <td><%= item.user.task_managers.finish.size %></td>
+              <td><%= item.user.task_managers.cancel.size %></td>
+              <td>
+                <%= link_to  project_manager_path(item.id, project_id: @project.id), method: :delete,
+                  type: "button", rel: "tooltip", class: "btn btn-danger btn-simple",
+                  "data-original-title": "Xóa nhân viên ra khỏi dự án" do %>
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                <% end %>
+              </td>
             </tr>
             <% end %>
           </tbody>

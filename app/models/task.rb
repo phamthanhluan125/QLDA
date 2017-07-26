@@ -1,4 +1,6 @@
 class Task < ApplicationRecord
+  acts_as_paranoid
+
   has_many :task_managers
   has_many :users, through: :task_managers
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170722045916) do
+ActiveRecord::Schema.define(version: 20170725084152) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20170722045916) do
     t.integer  "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_project_managers_on_deleted_at", using: :btree
     t.index ["project_id"], name: "index_project_managers_on_project_id", using: :btree
     t.index ["user_id"], name: "index_project_managers_on_user_id", using: :btree
   end
@@ -65,7 +67,9 @@ ActiveRecord::Schema.define(version: 20170722045916) do
     t.integer  "admin_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.datetime "deleted_at"
     t.index ["admin_id"], name: "index_projects_on_admin_id", using: :btree
+    t.index ["deleted_at"], name: "index_projects_on_deleted_at", using: :btree
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -97,6 +101,8 @@ ActiveRecord::Schema.define(version: 20170722045916) do
     t.integer  "task_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_task_managers_on_deleted_at", using: :btree
     t.index ["task_id"], name: "index_task_managers_on_task_id", using: :btree
     t.index ["user_id"], name: "index_task_managers_on_user_id", using: :btree
   end
@@ -111,6 +117,8 @@ ActiveRecord::Schema.define(version: 20170722045916) do
     t.integer  "project_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_tasks_on_deleted_at", using: :btree
     t.index ["project_id"], name: "index_tasks_on_project_id", using: :btree
   end
 

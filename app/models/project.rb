@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
+  acts_as_paranoid
+
   has_many :project_managers, dependent: :destroy
   has_many :time_sheets, dependent: :destroy
   has_many :tasks, dependent: :destroy

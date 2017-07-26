@@ -4,8 +4,8 @@
 
 <div class="sidebar-wrapper">
   <ul class="nav">
-    <li class="active">
-      <%= link_to "#" do %>
+    <li>
+      <%= link_to root_path do %>
         <i class="fa fa-tachometer" aria-hidden="true"></i>
         <p>Thông tin tổng quát</p>
       <% end %>
@@ -41,12 +41,6 @@
           </li>
         </ul>
       </div>
-    </li>
-    <li>
-      <%= link_to tasks_path do %>
-        <i class="material-icons">library_books</i>
-        <p>Quản lý task</p>
-      <% end %>
     </li>
     <li>
       <%= link_to "#" do %>

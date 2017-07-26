@@ -6,7 +6,7 @@ class Admin < ApplicationRecord
 
   has_many :users
   has_many :roles
-  has_many :project
+  has_many :projects
 
   scope :of_manager, -> manager_id {where manager_id: manager_id}
 end

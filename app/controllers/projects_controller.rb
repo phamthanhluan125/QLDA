@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
     @user_projects = ProjectManager.of_project(@project.id)
     @users_not_project = User.not_ids @user_projects.map(&:user_id)
     @tasks = @project.tasks
+    @task_managers = TaskManager.by_ids @tasks.map(&:id)
   end
 
   def update

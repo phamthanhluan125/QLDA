@@ -28,6 +28,8 @@ gem "roo-xls"
 gem "font-awesome-sass"
 gem "pry-rails"
 gem 'momentjs-rails', '>= 2.9.0'
+gem "paranoia", "~> 2.2"
+gem "config"
 
 group :development, :test do
   gem "byebug", platform: :mri

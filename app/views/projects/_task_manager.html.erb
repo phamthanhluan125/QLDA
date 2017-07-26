@@ -1,1 +1,112 @@
-_task_manager.html.erb
+<tr class="user-item">
+  <td><%= task_manager.task.name %></td>
+  <td><%= task_manager.user.name %></td>
+  <td><%= task_manager.note %></td>
+  <td><%= l task_manager.start_date %></td>
+  <td><%= l task_manager.deadline %></td>
+  <td><%= task_manager.finish_date.present? ? l(task_manager.finish_date) : "--/--/----" %></td>
+  <td><%= load_status_model task_manager %></td>
+  <td class="td-actions text-right">
+    <button type="button" rel="tooltip" class="<%= check_btn_edit task_manager %>
+      btn-user-edit btn btn-info btn-simple btn-show-modal" data-original-title="
+      Chỉnh sửa thông tin" data-toggle="modal" href="#edit-task-manager-<%= task_manager.id %>">
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      <div class="ripple-container"></div>
+    </button>
+    <%= link_to edit_task_manager_path(id: task_manager.id,
+      type: Settings.update.finish, project_id: @project.id),
+      type: "button", rel: "tooltip", class: "#{check_btn_finish task_manager}
+      btn btn-primary btn-simple", "data-original-title": "Đánh dấu hoàn thành" do %>
+      <i class="fa fa-check" aria-hidden="true"></i>
+    <% end %>
+    <%= link_to edit_task_manager_path(id: task_manager.id,
+      type: Settings.update.cancel, project_id: @project.id),
+      type: "button", rel: "tooltip", class: "#{check_btn_finish task_manager}
+      btn btn-warning btn-simple", "data-original-title": "Hủy công việc" do %>
+      <i class="fa fa-ban" aria-hidden="true"></i>
+    <% end %>
+    <%= link_to  task_manager_path(task_manager.id, project_id: @project.id),
+      method: :delete, type: "button", rel: "tooltip", class: "#{check_btn_delete task_manager}
+      btn btn-danger btn-simple", "data-original-title": "Xóa" do %>
+      <i class="fa fa-trash" aria-hidden="true"></i>
+    <% end %>
+  </td>
+</tr>
+
+<% unless task_manager.finish? || task_manager.cancel? %>
+  <!-- model edit task -->
+  <%= form_for task_manager, url: task_manager_path(id: task_manager.id, project_id: @project.id), method: :put do |f| %>
+    <div class="modal fade" id="edit-task-manager-<%= task_manager.id %>">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Chỉnh sửa công việc</h4>
+          </div>
+          <div class="modal-body">
+            <div class="card">
+              <div class="card-content">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group label-floating is-empty">
+                        <label class="control-label">Tên</label>
+                          <%= text_field_tag :name, task_manager.task.name, disabled: "",
+                          class: "form-control" %>
+                        <span class="material-input"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group label-floating is-empty">
+                        <label class="control-label">Mô tả</label>
+                        <%= f.text_area :note, maxlength: 3000, minlength: 6, class: "form-control" %>
+                        <span class="material-input"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <%= hidden_field "", "", data: {start: l(task_manager.task.start_date),
+                      end: l(task_manager.task.deadline), name: "công việc"}, class: "limit-time" %>
+                    <div class="col-md-6">
+                      <div class="form-group label-floating is-empty">
+                        <label class="control-label">Thời gian bắt đầu</label>
+                        <%= f.text_field :start_date, required: true, class: "date date-start form-control" %>
+                        <span class="material-input"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group label-floating is-empty">
+                        <label class="control-label">Deadline</label>
+                        <%= f.text_field :deadline, required: true, class: "date date-end form-control" %>
+                        <span class="material-input"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                     <div class="form-group label-floating is-empty">
+                      <label>Nhân viên</label>
+                      <%= f.select :user_id, @user_projects.collect{|pm|
+                        [pm.user.name + " - " + pm.user.role.name, pm.user.id]}, {},
+                      class: "form-control", disabled: "" %>
+                      <span class="material-input"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <%= link_to "Hủy", "javascript:", class: "btn btn-default", "data-dismiss": "modal" %>
+            <%= f.submit "Hoàn tất", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

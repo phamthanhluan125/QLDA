@@ -5,7 +5,8 @@
   <td><%= l project.deadline %></td>
   <td><%= load_status_model project %></td>
   <td class="td-actions text-right">
-    <button type="button" rel="tooltip" title="" class="<%= check_btn_edit project %> btn-user-edit btn btn-success btn-simple btn-xs"
+    <button type="button" rel="tooltip" title="" class="<%= check_btn_edit project %>
+      btn-user-edit btn btn-success btn-simple btn-show-modal"
       data-original-title="Chỉnh sửa thông tin" data-toggle="modal" href="#edit-project-<%= project.id %>">
       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
       <div class="ripple-container"></div>

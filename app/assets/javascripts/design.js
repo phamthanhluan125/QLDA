@@ -130,7 +130,7 @@ function ajax_change_choose_project() {
 
 function alert_finish_cancel_project() {
   $('.btn-finish-project-error').click(function(){
-    sweetAlert('Lỗi!!!', 'Chỉ được đánh dấu hoàn thành khi tất cả các task đả được hoàn thành(hoặc hủy).', 'error');
+    sweetAlert('Lỗi!!!', 'Chỉ được đánh dấu hoàn thành khi tất cả các công việc đả được hoàn thành(hoặc hủy).', 'error');
   });
   $('.btn-cancel-project-error').click(function(){
     sweetAlert('Lỗi!!!', 'Chỉ được hủy dự án khi dự án đó chưa bắt đầu', 'error');

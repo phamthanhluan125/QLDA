@@ -65,6 +65,10 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    config (1.4.0)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.1.1)
+    deep_merge (1.1.1)
     devise (4.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -112,6 +116,8 @@ GEM
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
     orm_adapter (0.5.0)
+    paranoia (2.3.1)
+      activerecord (>= 4.0, < 5.2)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -217,6 +223,7 @@ DEPENDENCIES
   carrierwave (= 0.10.0)
   carrierwave-base64
   coffee-rails (~> 4.2)
+  config
   devise
   font-awesome-sass
   jbuilder (~> 2.5)
@@ -227,6 +234,7 @@ DEPENDENCIES
   mini_magick
   momentjs-rails (>= 2.9.0)
   mysql2 (>= 0.3.18, < 0.5)
+  paranoia (~> 2.2)
   pry-rails
   puma (~> 3.0)
   rails (~> 5.0.4)

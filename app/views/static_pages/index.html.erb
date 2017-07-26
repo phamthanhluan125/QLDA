@@ -1,2 +1,96 @@
-<h1>StaticPages#index</h1>
-<p>Find me in app/views/static_pages/index.html.erb</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <div class="card">
+        <div class="card-header" data-background-color="purple">
+          <h4 class="title">DỰ ÁN</h4>
+        </div>
+        <div class="card-content table-responsive">
+          <div class="material-datatables">
+            <table id="datatables" class="table table-striped table-no-bordered table-hover"
+              cellspacing="0" width="100%" style="width:100%">
+              <tbody>
+                <tr>
+                  <td>Tổng số dự án:</td>
+                  <td><%= @project_chart.inject(0){|sum, i| sum += i[:count]} %></td>
+                </tr>
+                <tr>
+                  <td>Số dự án chưa bắt đầu:</td>
+                  <td><%= @project_chart[0][:count] %></td>
+                </tr>
+                <tr>
+                  <td>Số dự án đang làm:</td>
+                  <td><%= @project_chart[1][:count] %></td>
+                </tr>
+                <tr>
+                  <td>Số dự án chậm tiến độ:</td>
+                  <td><%= @project_chart[2][:count] %></td>
+                </tr>
+                <tr>
+                  <td>Số dự án đã hoàn thành:</td>
+                  <td><%= @project_chart[3][:count] %></td>
+                </tr>
+                <tr>
+                  <td>Số dự án bị hủy: </td>
+                  <td><%= @project_chart[4][:count] %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <div id="chart-project" data-chart="<%= @project_chart.to_json %>"></div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <div class="card">
+        <div class="card-header" data-background-color="purple">
+          <h4 class="title">CÔNG VIỆC</h4>
+        </div>
+        <div class="card-content table-responsive">
+          <div class="material-datatables">
+            <table id="datatables" class="table table-striped table-no-bordered table-hover"
+              cellspacing="0" width="100%" style="width:100%">
+              <tbody>
+                <tr>
+                  <td>Tổng số công việc:</td>
+                  <td><%= @task_chart.inject(0){|sum, i| sum += i[:count]} %></td>
+                </tr>
+                <tr>
+                  <td>Số công việc chưa bắt đầu:</td>
+                  <td><%= @task_chart[0][:count] %></td>
+                </tr>
+                <tr>
+                  <td>Số công việc đang làm:</td>
+                  <td><%= @task_chart[1][:count] %></td>
+                </tr>
+                <tr>
+                  <td>Số công việc chậm tiến độ:</td>
+                  <td><%= @task_chart[2][:count] %></td>
+                </tr>
+                <tr>
+                  <td>Số công việc đã hoàn thành:</td>
+                  <td><%= @task_chart[3][:count] %></td>
+                </tr>
+                <tr>
+                  <td>Số công việc bị hủy: </td>
+                  <td><%= @task_chart[4][:count] %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <div id="chart-task" data-chart="<%= @task_chart.to_json %>"></div>
+    </div>
+  </div>
+</div>
+
+

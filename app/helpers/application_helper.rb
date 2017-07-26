@@ -26,6 +26,19 @@ module ApplicationHelper
     end
   end
 
+  def check_btn_finish object
+    case
+    when object.class.name == "Task"
+      unless !object.pending? && !object.finish? && !object.cancel? && object.task_managers.size == (object.task_managers.finish.size + object.task_managers.cancel.size)
+        return "disabled"
+      end
+    when object.class.name == "TaskManager"
+      unless !object.pending? && !object.finish? && !object.cancel?
+        return "disabled"
+      end
+    end
+  end
+
   def load_color_header item
     case
     when item.pending?

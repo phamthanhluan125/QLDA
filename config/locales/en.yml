@@ -27,3 +27,9 @@ en:
   time:
     formats:
       default: "%d/%m/%Y %H:%M"
+  status:
+    pending: "Chưa bắt đầu"
+    running: "Đang diễn ra"
+    finish: "Đã hoàn thành"
+    delay: "Trể tiến độ"
+    cancel: "Hủy"
