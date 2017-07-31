@@ -12,12 +12,12 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  host: localhost
-  database: qlda_production
-  username: root
-  password: root
-  allow_concurrency: true
   pool: 5
+  username: root
+  password: 1234
+  socket: /tmp/mysql.sock
+  host: localhost
+  allow_concurrency: true
 
 development:
   <<: *default
