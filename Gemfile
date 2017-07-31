@@ -22,7 +22,7 @@ gem "turbolinks", "~> 5"
 gem "jquery-turbolinks"
 gem "jbuilder", "~> 2.5"
 gem "json"
-gem "mysql2", ">= 0.3.18", "< 0.5"
+gem 'pg'
 gem "roo"
 gem "roo-xls"
 gem "font-awesome-sass"
