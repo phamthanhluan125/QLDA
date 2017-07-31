@@ -31,6 +31,10 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem "paranoia", "~> 2.2"
 gem "config"
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development, :test do
   gem "byebug", platform: :mri
 end

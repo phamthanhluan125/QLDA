@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: ENV['DATABASE_URL']
-  username: ENV['CLEARDB_DATABASE_USERNAME']
-  password: ENV['CLEARDB_DATABASE_PASSWORDs']
+  database: qlda_production
+  username: qlda
+  password: <%= ENV['QLDA_DATABASE_PASSWORD'] %>
