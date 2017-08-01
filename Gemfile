@@ -22,8 +22,6 @@ gem "turbolinks", "~> 5"
 gem "jquery-turbolinks"
 gem "jbuilder", "~> 2.5"
 gem "json"
-gem "mysql2", ">= 0.3.18", "< 0.5"
-gem 'activerecord-mysql2-adapter'
 gem "roo"
 gem "roo-xls"
 gem "font-awesome-sass"
@@ -34,10 +32,13 @@ gem "config"
 
 group :production do
   gem 'rails_12factor'
+  gem "pg"
 end
 
 group :development, :test do
   gem "byebug", platform: :mri
+  gem "mysql2", ">= 0.3.18", "< 0.5"
+  gem 'activerecord-mysql2-adapter'
 end
 
 group :development do

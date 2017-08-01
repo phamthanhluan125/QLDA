@@ -48,7 +48,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: qlda_production
-  username: qlda
-  password: <%= ENV['QLDA_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  database: my_database_production
+  pool: 5
+  timeout: 5000
