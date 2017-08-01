@@ -38,7 +38,6 @@ end
 group :development, :test do
   gem "byebug", platform: :mri
   gem "mysql2", ">= 0.3.18", "< 0.5"
-  gem 'activerecord-mysql2-adapter'
 end
 
 group :development do
