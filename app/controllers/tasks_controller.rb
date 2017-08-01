@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :authenticate_admin!
   before_action :load_task, only: [:update, :destroy, :edit]
   before_action :load_project, only: :create
 
@@ -12,7 +13,6 @@ class TasksController < ApplicationController
   end
 
   def create
-    binding.pry
     task = Task.new new_task_params
     if task.save
       flash[:success] = "Tạo thành công task: " + task.name

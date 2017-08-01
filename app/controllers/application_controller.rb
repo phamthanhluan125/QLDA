@@ -1,6 +1,8 @@
+require "json_response"
+
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
   protect_from_forgery with: :exception
-  before_action :authenticate_admin!
   before_action :update_status_of_model
 
   private
@@ -27,5 +29,11 @@ class ApplicationController < ActionController::Base
     change_status(Project.for_update_status)
     change_status(Task.for_update_status)
     change_status(TaskManager.for_update_status)
+  end
+
+  JsonResponse::STATUS_CODE.keys.each do |status|
+    define_method "response_#{status}" do |message = "", content = {}|
+      render json: JsonResponse.send(status, message, content)
+    end
   end
 end

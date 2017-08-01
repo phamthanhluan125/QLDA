@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_admin!
   before_action :load_project, only: [:update, :show]
 
   def index

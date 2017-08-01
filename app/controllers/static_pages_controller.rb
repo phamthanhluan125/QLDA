@@ -1,9 +1,12 @@
 class StaticPagesController < ApplicationController
 layout "login", only: :login
   def index
-    redirect_to login_path if !admin_signed_in?
-    load_data_project_chart
-    load_data_task_chart
+    if admin_signed_in?
+      load_data_project_chart
+      load_data_task_chart
+    else
+      redirect_to login_path
+    end
   end
 
   def login

@@ -17,6 +17,7 @@
 //= require moment
 //= require_tree .
 //= require sweetalert/dist/sweetalert.min.js
+//= require adm-dtp/dist/ADM-dateTimePicker.min.js
 
 $(document).ready(function () {
   setTimeout(function(){ $('.alert').fadeOut(3000);}, 5000);

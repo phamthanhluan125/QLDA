@@ -30,6 +30,11 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem "paranoia", "~> 2.2"
 gem "config"
 
+# api
+gem "simple_token_authentication", "~> 1.0"
+gem "versionist"
+gem "active_model_serializers", "~> 0.10.0"
+
 group :production do
   gem 'rails_12factor'
   gem "pg"

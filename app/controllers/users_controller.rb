@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_admin!
   before_action :load_user, only: :update
   before_action :check_email, only: :create
 

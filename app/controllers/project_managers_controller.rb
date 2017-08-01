@@ -1,4 +1,5 @@
 class ProjectManagersController < ApplicationController
+  before_action :authenticate_admin!
   before_action :load_project, only: [:create, :destroy]
   before_action :load_user, only: :create
   before_action :load_project_manager, only: :destroy
