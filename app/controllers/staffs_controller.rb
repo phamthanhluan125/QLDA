@@ -1,5 +1,4 @@
-class UsersController < ApplicationController
-  before_action :authenticate_admin!
+class StaffsController < ApplicationController
   before_action :load_user, only: :update
   before_action :check_email, only: :create
 
@@ -15,7 +14,7 @@ class UsersController < ApplicationController
     else
       flash[:danger] = "Cập nhật thông tin nhân viên thất bại!"
     end
-    redirect_to users_path
+    redirect_to staffs_path
   end
 
   def new
@@ -24,19 +23,20 @@ class UsersController < ApplicationController
 
   def create
     user = User.new new_user_params
-    binding.pry
+    user.authentication_token = Devise.friendly_token
     if user.save
       flash[:success] = "Tạo thành công nhân viên " + params[:user][:name]
     else
       flash[:danger] = "Tạo nhân viên thất bại!"
     end
-    redirect_to new_user_path
+    redirect_to new_staff_path
   end
 
   private
   def new_user_params
     params.require(:user).permit(:name, :email, :password, :avatar, :gender,
-      :status, :address, :birthday, :time_scr, :role_id).merge admin_id: current_admin.id
+      :status, :address, :birthday, :time_scr, :role_id).merge admin_id: current_admin.id,
+      password_confirmation: params[:user][:password]
   end
 
   def user_params
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     @user = User.find_by id: params[:id]
     unless @user.present?
       flash[:danger] = "Không tìm thấy nhân viên này!"
-      redirect_to users_path
+      redirect_to staffs_path
     end
   end
 
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
     admin = Admin.find_by email: params[:user][:email]
     if user.present? || admin.present?
       flash[:danger] = "Email này đã tồn tại, vui lòng chọn email khác"
-      redirect_to new_user_path
+      redirect_to new_staff_path
     end
   end
 end

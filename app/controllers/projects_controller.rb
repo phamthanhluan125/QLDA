@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+
     @user_projects = ProjectManager.of_project(@project.id)
     @users_not_project = User.not_ids @user_projects.map(&:user_id)
     @tasks = @project.tasks
@@ -26,7 +27,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    project = Project.new project_params
+      project = Project.new new_project_params
     if project.save
       flash[:success] = "Tạo thành công dự án: " + project.name
     else

@@ -11,6 +11,5 @@ class V1::UsersController < V1::BaseController
   private
   def user_params
     params.require(:user).permit :name, :avatar, :birthday, :gender, :address
-
   end
 end

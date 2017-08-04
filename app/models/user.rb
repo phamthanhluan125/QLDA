@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :own_projects, class_name: "Project", foreign_key: :owner_id
   has_many :project_managers
+  has_many :projects, through: :project_managers
   has_many :staffs, class_name: "UserManager", foreign_key: :staff_id
   has_many :managers, class_name: "UserManager", foreign_key: :manager_id
   has_many :messanges
@@ -30,6 +31,7 @@ class User < ApplicationRecord
     self.update_attributes authentication_token: generate_authentication_token
   end
 
+  private
   def generate_authentication_token
     loop do
       token = Devise.friendly_token

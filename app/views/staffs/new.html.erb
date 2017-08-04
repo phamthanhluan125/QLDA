@@ -1,4 +1,4 @@
-<%= form_for User.new, url: users_path do |f| %>
+<%= form_for User.new, url: staffs_path do |f| %>
   <div class="card">
     <div class="card-header" data-background-color="purple">
       <h4 class="title">Thêm nhân viên mới</h4>
@@ -30,7 +30,7 @@
           <div class="col-md-9">
             <div class="form-group label-floating is-empty">
               <label class="control-label">Sinh nhật</label>
-              <%= f.text_field :birthday, class: "date form-control" %>
+              <%= f.text_field :birthday, required: true, class: "date form-control" %>
               <span class="material-input"></span>
             </div>
           </div>
