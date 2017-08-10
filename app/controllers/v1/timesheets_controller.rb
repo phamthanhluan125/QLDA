@@ -2,6 +2,10 @@ class V1::TimesheetsController < V1::BaseController
   skip_before_filter :verify_authenticity_token, only: [:create, :update]
   before_action :load_timesheet, only: :update
 
+  def index
+    response_success "OK", Timesheet.all
+  end
+
   def create
     if Timesheet.create project_id: current_user.projects.first.id,
       user_id: current_user.id, start: DateTime.now, end: DateTime.now
