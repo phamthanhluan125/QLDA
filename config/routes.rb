@@ -18,5 +18,8 @@ Rails.application.routes.draw do
     resources :projects, defaults: {format: :json}
     resources :tasks, defaults: {format: :json}
     resources :messanges, default: {format: :json}
+    resources :admins, default: {format: :json}
+    resources :timesheets, default: {format: :json}
+    resources :screenshots, default: {format: :json}
   end
 end

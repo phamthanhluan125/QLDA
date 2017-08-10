@@ -4,7 +4,7 @@ class V1::ProjectsController < V1::BaseController
     if resuft.present?
       response_success t("api.success"), resuft
     else
-      response_not_found  "Không có projetc nào"
+      response_not_found  "Không có project nào"
     end
   end
 end
