@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :tasks
   resources :project_managers
   resources :task_managers
+  resources :timesheets
 
   api_version(module: "V1", path: {value: "v1"}, default: true) do
     resources :users, defaults: {format: :json}

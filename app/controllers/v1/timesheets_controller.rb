@@ -7,17 +7,18 @@ class V1::TimesheetsController < V1::BaseController
   end
 
   def create
-    if Timesheet.create project_id: current_user.projects.first.id,
+    timesheet = Timesheet.new project_id: current_user.projects.first.id,
       user_id: current_user.id, start: DateTime.now, end: DateTime.now
-      response_success "Khởi tạo thành công."
+    if timesheet.save
+      response_success "Khởi tạo thành công.", timesheet
     else
       response_error "Khởi tạo thất bại."
     end
   end
 
   def update
-    if @timesheet.update_attribute :time_end, DateTime.now
-      response_success "Cập nhật thành công."
+    if @timesheet.update_attribute :end, DateTime.now
+      response_success "Cập nhật thành công.", @timesheet
     else
       response_eror "Cập nhật thất bại."
     end

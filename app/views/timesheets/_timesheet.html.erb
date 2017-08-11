@@ -1,0 +1,15 @@
+<tr>
+  <td><%= timesheet.user.name %></td>
+  <td><%= timesheet.user.role.name %></td>
+  <td><%= l timesheet.created_at, format: "%d/%m/%Y" %></td>
+  <td><%= l timesheet.start, format: "%H:%M %d/%m" %></td>
+  <td><%= l timesheet.end, format: "%H:%M %d/%m" %></td>
+  <td><%= Time.at(timesheet.end - timesheet.start).utc.strftime("%H:%M:%S") %></td>
+  <td><%= timesheet.screenshots.size %></td>
+  <td class="td-actions text-right">
+    <button type="button" rel="tooltip" class="btn btn-info btn-simple <%= "disabled" if timesheet.screenshots.size == 0 %>"
+      data-original-title="Screenshots"title="">
+      <i class="fa fa-file-image-o" aria-hidden="true"></i>
+    </button>
+  </td>
+</tr>
