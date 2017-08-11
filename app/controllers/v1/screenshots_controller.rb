@@ -8,7 +8,6 @@ class V1::ScreenshotsController < V1::BaseController
   def create
     scr = Screenshot.create scr_params
     if scr.save
-
       response_success "Thành công.", scr
     else
       response_error "Thất bại."
