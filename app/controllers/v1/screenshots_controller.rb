@@ -1,9 +1,14 @@
 class V1::ScreenshotsController < V1::BaseController
   skip_before_filter :verify_authenticity_token, only: :create
 
+  def index
+    response_success "OK", Screenshot.all
+  end
+
   def create
-    if Screenshot.create scr_params
-      response_success "Thành công."
+    scr = Screenshot.create scr_params
+    if scr.save
+      response_success "Thành công.", scr
     else
       response_error "Thất bại."
     end
