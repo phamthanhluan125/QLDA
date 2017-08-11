@@ -53,4 +53,12 @@ module ApplicationHelper
       "red"
     end
   end
+
+  def total_timesheets timesheets
+    count = 0
+    timesheets.each do |t|
+      count += (t.end - t.start)
+    end
+    count
+  end
 end

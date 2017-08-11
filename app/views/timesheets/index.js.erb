@@ -1,0 +1,16 @@
+$('tbody').html("<%= j render partial: 'timesheet', collection: @timesheets %>");
+$('.count-timesheets').html("<%= @timesheets.size %>");
+$('.total-timesheets').html("<%= Time.at(total_timesheets @timesheets).utc.strftime('%H:%M:%S') %>");
+<% unless @users.nil? %>
+$('#timesheet-list-users').replaceWith('<%= escape_javascript (select_tag "timesheet-list-users", options_for_select(@users.present? ? @users.collect{|p| [p.name, p.id]} : []), {class: "select-timesheet", include_blank: "Tất cả"}) %>')
+$('#timesheet-list-users').change(function(){
+  var user_id = $(this).val();
+  $.ajax({
+    url: '/timesheets',
+    type: 'GET',
+    data: {
+      user_id: user_id
+    }
+  });
+});
+<% end %>
