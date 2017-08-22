@@ -1,0 +1,166 @@
+.display-inline-block {
+  display: inline-block;
+}
+
+.float-right {
+  float: right;
+}
+
+.btn-header {
+  font-size: 20px;
+  border-radius: 10px;
+  border: solid 1px;
+  padding: 0 5px;
+  box-shadow: 1px 1px 1px 1px grey;
+}
+
+.height-auto {
+  height: auto !important;
+}
+
+.screenshot-image {
+  .image {
+    .image-choosed {
+      width: 90%;
+      height: 275px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+  }
+  .screenshot-image-list {
+    margin-top: 10px;
+    height: 80px;
+    width: 100%;
+    overflow: auto;
+    .item-image {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      cursor: pointer;
+      margin-top: 10px;
+      opacity: 0.6;
+    }
+    .item-selected {
+      opacity: 1;
+      box-shadow: 1px 1px 1px gray;
+      transition: 0.5s ease-in-out;
+    }
+  }
+  .image-time {
+    position: fixed;
+    top: 73px;
+    background: rgba(214, 214, 214, 0.65);
+    border-radius: 5px;
+    padding: 0 2px;
+  }
+}
+
+.bg-none {
+  background-color: rgba(255, 165, 0, 0);
+}
+
+.content-mail {
+  .mail-title {
+    font-size: 25px;
+  }
+  .mail-info {
+    padding: 20px;
+    border: solid 1px;
+    border-radius: 10px;
+  }
+}
+
+
+.messages {
+  body {
+    font: normal 14px/100% "Andale Mono", AndaleMono, monospace;
+    color: #fff;
+    padding: 50px;
+    width: 300px;
+    margin: 0 auto;
+    background-color: #374954;
+  }
+
+  a {
+    color: #fff;
+  }
+
+  .dropdown dd,
+  .dropdown dt {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .dropdown ul {
+    margin: -1px 0 0 0;
+  }
+
+  .dropdown dd {
+    position: relative;
+  }
+
+  .dropdown a,
+  .dropdown a:visited {
+    color: gray;
+    text-decoration: none;
+    outline: none;
+    font-size: 12px;
+  }
+
+  .dropdown dt a {
+    background-color: white;
+    display: block;
+    padding: 8px 20px 5px 10px;
+    min-height: 25px;
+    line-height: 24px;
+    overflow: hidden;
+    border: 0;
+  }
+
+  .dropdown dt a span,
+  .multiSel span {
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 3px 2px 0;
+  }
+
+  .dropdown dd ul {
+    background-color: #4F6877;
+    border: 0;
+    color: #fff;
+    display: none;
+    left: 0px;
+    padding: 2px 15px 2px 5px;
+    position: absolute;
+    top: 2px;
+    list-style: none;
+    height: 100px;
+    overflow: auto;
+    z-index: 100;
+  }
+
+  .dropdown span.value {
+    display: none;
+  }
+
+  .dropdown dd ul li a {
+    padding: 5px;
+    display: block;
+  }
+
+  .dropdown dd ul li a:hover {
+    background-color: #fff;
+  }
+
+  button {
+    background-color: #6BBE92;
+    width: 302px;
+    border: 0;
+    padding: 10px 0;
+    margin: 5px 0;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+  }
+}

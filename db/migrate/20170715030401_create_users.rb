@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.integer :time_scr
       t.integer :status, default: 0
       t.references :role, foreign_key: true
-      t.references :admin, foreign_key: true
+      t.references :manager, foreign_key: true
       t.timestamps
     end
   end

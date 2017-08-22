@@ -1,10 +1,10 @@
 class StaffsController < ApplicationController
-  before_action :load_user, only: :update
+  before_action :load_user, only: [:update, :destroy]
   before_action :check_email, only: :create
 
   def index
-    @users = User.of_admin current_admin.id
-    @roles = Role.of_admin current_admin.id
+    @users = User.of_manager current_manager.id
+    @roles = Role.of_manager current_manager.id
   end
 
 # update user profile
@@ -18,7 +18,7 @@ class StaffsController < ApplicationController
   end
 
   def new
-    @roles = Role.of_admin current_admin.id
+    @roles = Role.of_manager current_manager.id
   end
 
   def create
@@ -32,10 +32,20 @@ class StaffsController < ApplicationController
     redirect_to new_staff_path
   end
 
+  def destroy
+    if @user.projects.present? || @user.tasks.present? || @user.timesheets.present?
+      flash[:danger] = "Chỉ có thể xóa nhân viên khi nhân viên chưa tham gia dự án, chưa phân công task và chưa có timesheets nào."
+    else
+      @user.destroy
+      flash[:success] = "Đã xóa thành công nhân viên #{@user.name}"
+    end
+    redirect_to staffs_path
+  end
+
   private
   def new_user_params
     params.require(:user).permit(:name, :email, :password, :avatar, :gender,
-      :status, :address, :birthday, :time_scr, :role_id).merge admin_id: current_admin.id,
+      :status, :address, :birthday, :time_scr, :role_id).merge manager_id: current_manager.id,
       password_confirmation: params[:user][:password]
   end
 
@@ -54,8 +64,8 @@ class StaffsController < ApplicationController
 
   def check_email
     user = User.find_by email: params[:user][:email]
-    admin = Admin.find_by email: params[:user][:email]
-    if user.present? || admin.present?
+    manager = Manager.find_by email: params[:user][:email]
+    if user.present? || manager.present?
       flash[:danger] = "Email này đã tồn tại, vui lòng chọn email khác"
       redirect_to new_staff_path
     end

@@ -1,5 +1,5 @@
 class TaskManagersController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_manager!
   before_action :load_project, only: :create
   before_action :load_user, only: :create
   before_action :load_task, only: :create

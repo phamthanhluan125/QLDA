@@ -1,0 +1,19 @@
+<div class="screenshot-image text-center">
+  <div class="image">
+    <% if @scrs.present? %>
+    <%= image_tag @scrs.first.image.url, class: "image-choosed" %>
+    <% else %>
+    <%= image_tag "avatar-default", class: "image-choosed" %>
+    <% end %>
+  </div>
+  <div class="image-time">
+    <%= @scrs.present? ? @scrs.first.created_at : "HH:MM dd/mm/yyyy" %>
+  </div>
+  <div class="screenshot-image-list">
+    <% if @scrs.present? %>
+    <% @scrs.each do |s| %>
+    <%= image_tag s.image.url, class: "item-image", "data-time": s.created_at %>
+    <% end %>
+    <% end %>
+  </div>
+</div>

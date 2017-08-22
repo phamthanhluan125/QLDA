@@ -18,9 +18,10 @@
      data-original-title="Chi tiết">
       <i class="fa fa-user-circle-o" aria-hidden="true"></i>
     </button>
-    <button type="button" rel="tooltip" class="btn btn-danger btn-simple" data-original-title="" title="">
+    <%= link_to staff_path(user.id), method: :delete, class: "btn btn-danger btn-simple",
+      "data-original-title": "Xóa nhân viên", rel: "tooltip", "data-confirm": "Bạn có chắc chắn xóa???" do %>
       <i class="fa fa-user-times" aria-hidden="true"></i>
-    </button>
+    <% end %>
   </td>
 </tr>
 

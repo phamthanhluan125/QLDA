@@ -1,0 +1,26 @@
+<tr class="user-item">
+  <td><%= image_tag message.user.avatar.present? ? user.avatar : "avatar-default", class: "user-avatar" %></td>
+  <td><%= @type.present? ? message.user_mail.name : message.user.name %></td>
+  <td><%= l message.created_at, format: "%H:%M %d/%m/%Y" %></td>
+  <td><%= message.title.present? ? message.title : "Không có tiêu đề" %></td>
+  <td><%= truncate message.info, length: 20 %></td>
+  <td><%= load_status_mess message %></td>
+  <td class="td-actions text-right">
+    <% unless @type.present? %>
+      <button type="button" rel="tooltip" title="" class="btn-user-edit btn
+        btn-success btn-simple btn-xs btn-show-modal btn-message-seen" data-id="<%= message.id %>"
+        data-original-title="Xem" data-toggle="modal" href="#mail-view-<%= message.id %>">
+        <i class="fa fa-eye" aria-hidden="true"></i>
+        <div class="ripple-container"></div>
+      </button>
+      <button type="button" rel="tooltip" class="btn btn-primary btn-simple btn-xs"
+       data-original-title="Trả lời nhanh" data-toggle="modal", href="#mail-rep-<%= message.id %>">
+        <i class="fa fa-repeat" aria-hidden="true"></i>
+      </button>
+    <% end %>
+    <%= link_to "#", class: "btn btn-danger btn-simple",
+      "data-original-title": "Xóa", rel: "tooltip", "data-confirm": "Bạn có chắc chắn xóa???" do %>
+      <i class="fa fa-trash-o" aria-hidden="true"></i>
+    <% end %>
+  </td>
+</tr>

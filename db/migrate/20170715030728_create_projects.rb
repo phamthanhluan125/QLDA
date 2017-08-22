@@ -7,7 +7,7 @@ class CreateProjects < ActiveRecord::Migration[5.0]
       t.date :deadline
       t.date :finish_date
       t.integer :status
-      t.references :admin, foreign_key: true
+      t.references :manager, foreign_key: true
 
       t.timestamps
     end

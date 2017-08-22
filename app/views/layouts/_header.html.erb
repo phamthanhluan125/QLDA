@@ -37,7 +37,7 @@
         </a>
         <ul class="dropdown-menu">
           <li><a href="#">Thông tin cá nhân</a></li>
-          <li><%= link_to "Đăng xuất", destroy_admin_session_path, method: :delete %></li>
+          <li><%= link_to "Đăng xuất", destroy_manager_session_path, method: :delete, "data-confirm": "Bạn muốn đăng xuất???" %></li>
         </ul>
      </li>
    </ul>

@@ -4,7 +4,7 @@ class CreateRoles < ActiveRecord::Migration[5.0]
       t.string :name
       t.text :info
       t.string :icon
-      t.references :admin, foreign_key: true
+      t.references :manager, foreign_key: true
 
       t.timestamps
     end

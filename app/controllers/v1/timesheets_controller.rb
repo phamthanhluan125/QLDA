@@ -7,12 +7,16 @@ class V1::TimesheetsController < V1::BaseController
   end
 
   def create
-    timesheet = Timesheet.new project_id: current_user.projects.first.id,
-      user_id: current_user.id, start: DateTime.now, end: DateTime.now
-    if timesheet.save
-      response_success "Khởi tạo thành công.", timesheet
+    if @user.projects.present?
+      timesheet = Timesheet.new project_id: current_user.projects.first.id,
+        user_id: current_user.id, start: DateTime.now, end: DateTime.now
+      if timesheet.save
+        response_success "Khởi tạo thành công.", timesheet
+      else
+        response_error "Khởi tạo thất bại."
+      end
     else
-      response_error "Khởi tạo thất bại."
+      response_error "Bạn không thể bắt đầu khi chưa nằm trong dự án nào."
     end
   end
 

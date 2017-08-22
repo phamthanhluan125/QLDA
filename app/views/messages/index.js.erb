@@ -1,0 +1,17 @@
+$('tbody').html('<%= j render partial: "message", collection: @messages %>');
+$('.load-modal').html('<%= j render partial: "modal_show", collection: @messages, as: :message %>')
+$('.btn-message-seen').click(function(){
+  var id = $(this).data('id');
+  var save = this;
+  $.ajax({
+    url: '/messages/' + id,
+    type: 'PUT',
+    dataType: 'js',
+    data: {data: id},
+    success: function(response) {
+      $(save).closest('tr').find('.status-message').removeClass('btn-success').addClass('btn-info').html('Đã xem')
+    },
+    error: function(errors) {
+    }
+  });
+});

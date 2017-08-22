@@ -127,6 +127,17 @@ function ajax_change_choose_project() {
   });
 }
 
+function load_scr() {
+  $('.btn-loadscr').click(function(){
+    var id = $(this).data('id');
+    $.ajax({
+      url: '/timesheets/' + id,
+      type: 'GET',
+      data: {}
+    });
+  });
+}
+
 
 function alert_finish_cancel_project() {
   $('.btn-finish-project-error').click(function(){
@@ -141,6 +152,9 @@ $(document).ready(function(){
   validate_time_start_deadline_project();
   ajax_change_choose_project();
   alert_finish_cancel_project();
+  load_scr();
+
+  setTimeout(function(){ $('.alert').fadeOut(3000);}, 5000);
 
   $('.btn-user-edit').click(function(){
     load_input();

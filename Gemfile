@@ -22,13 +22,14 @@ gem "turbolinks", "~> 5"
 gem "jquery-turbolinks"
 gem "jbuilder", "~> 2.5"
 gem "json"
-gem "roo"
-gem "roo-xls"
 gem "font-awesome-sass"
 gem "pry-rails"
 gem 'momentjs-rails', '>= 2.9.0'
 gem "paranoia", "~> 2.2"
 gem "config"
+gem "zip-zip"
+gem "axlsx", "2.1.0.pre"
+gem "axlsx_rails", "> 0.4"
 
 # api
 gem "simple_token_authentication", "~> 1.0"

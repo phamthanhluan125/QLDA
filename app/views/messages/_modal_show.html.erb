@@ -1,0 +1,71 @@
+<div class="modal fade" id="mail-view-<%= message.id %>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Chi tiết</h4>
+      </div>
+      <div class="modal-body height-auto">
+        <div class="card">
+          <div class="content-mail">
+            <div class="mail-title">
+              <%= message.title.present? ? message.title : "Không có tiêu đề" %>
+            </div>
+            <div class="mail-info">
+              <%= message.info %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Xong</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= form_for Message.new do |f| %>
+<%= hidden_field_tag :type, "fast" %>
+<%= f.hidden_field :to, value: message.user.email.to_s %>
+<div class="modal fade" id="mail-rep-<%= message.id %>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Trẩ lời cho: <%= message.user.name %></h4>
+      </div>
+      <div class="modal-body height-auto">
+        <div class="card">
+          <div class="card-content">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group label-floating is-empty">
+                    <label class="control-label">Tên</label>
+                    <%= f.text_field :title, class: "form-control" %>
+                    <span class="material-input"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group label-floating is-empty">
+                    <label class="control-label">Mô tả</label>
+                    <%= f.text_area :info, maxlength: 100, minlength: 6, required: true, class: "form-control" %>
+                    <span class="material-input"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+        <%= f.submit "Gửi", class: "btn btn-primary pull-right" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

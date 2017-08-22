@@ -6,6 +6,7 @@ $(document).ready(function(){
 function list_projects() {
   $('#timesheet-list-projects').change(function(){
     var project_id = $(this).val();
+    $('#report-timesheet').attr('href', ('/timesheets.xls?project_id=' + project_id))
     $.ajax({
       url: '/timesheets',
       type: 'GET',
@@ -19,6 +20,7 @@ function list_projects() {
 function list_users() {
   $('#timesheet-list-users').change(function(){
     var user_id = $(this).val();
+    $('#report-timesheet').attr('href', ('/timesheets.xls?user_id=' + user_id))
     $.ajax({
       url: '/timesheets',
       type: 'GET',

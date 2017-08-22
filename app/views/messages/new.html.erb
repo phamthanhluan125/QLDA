@@ -1,0 +1,76 @@
+<%= form_for Message.new do |f| %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header" data-background-color="purple">
+          <h4 class="title display-inline-block">MESSAGES MỚI</h4>
+          <p class="category">Gửi messages theo dự án hoặc từng thành viên...</p>
+        </div>
+        <div class="card-content">
+          <div class="col-md-12">
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="radio">
+                  <label><input type="radio" name="mail-type" checked="true" value="check-project">Gửi theo dự án</label>
+                </div>
+                <%= select_tag "messages-list-project", options_for_select(@projects.collect{|p| [p.name, p.id]}), {id: "messages-list-project", multiple: true} %>
+              </div>
+              <div class="col-md-12">
+                <div class="radio">
+                  <label><input type="radio" name="mail-type" value="check-user">Gửi theo cá nhân</label>
+                </div>
+                <%= select_tag "messages-list-user", options_for_select(@staffs.collect{|p| ["#{p.name} - #{p.role.name}", p.email]}), {id: "messages-list-user", multiple: true} %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group label-floating is-empty">
+                  <label class="control-label">Tiêu đề</label>
+                  <%= f.text_field :title,class: "form-control" %>
+                  <span class="material-input"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group label-floating is-empty">
+                  <label class="control-label">Nội dung</label>
+                  <%= f.text_area :info, maxlength: 3000, minlength: 6, required: true, class: "form-control" %>
+                  <span class="material-input"></span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <%= f.submit "Gửi messages", class: "btn btn-primary pull-right" %>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#messages-list-project').multiselect();
+    $('#messages-list-user').multiselect();
+    $('#messages-list-user').closest('.col-md-12').find('.multiselect').addClass('disabled');
+    $('input[type=radio][name=mail-type]').change(function() {
+      debugger
+      if (this.value == 'check-user') {
+        $('#messages-list-user').closest('.col-md-12').find('.multiselect').removeClass('disabled');
+        $('#messages-list-project').closest('.col-md-12').find('.multiselect').addClass('disabled');
+      }
+      else {
+        $('#messages-list-user').closest('.col-md-12').find('.multiselect').addClass('disabled');
+        $('#messages-list-project').closest('.col-md-12').find('.multiselect').removeClass('disabled');
+      }
+    });
+  });
+</script>

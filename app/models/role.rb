@@ -1,7 +1,7 @@
 class Role < ApplicationRecord
   has_many :users
 
-  belongs_to :admin
+  belongs_to :manager
 
-  scope :of_admin, -> admin_id {where admin_id: admin_id}
+  scope :of_manager, -> id {where manager_id: id}
 end

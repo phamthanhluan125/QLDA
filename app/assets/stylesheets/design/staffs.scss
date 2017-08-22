@@ -75,3 +75,17 @@
     font-size: 20px;
   }
 }
+
+.screenshotSlides {
+  img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+}
+
+.demo {
+  width: 110px;
+  height: 60px;
+  object-fit: cover;
+}

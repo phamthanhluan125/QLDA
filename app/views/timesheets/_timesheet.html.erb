@@ -2,14 +2,21 @@
   <td><%= timesheet.user.name %></td>
   <td><%= timesheet.user.role.name %></td>
   <td><%= l timesheet.created_at, format: "%d/%m/%Y" %></td>
-  <td><%= l timesheet.start, format: "%H:%M %d/%m" %></td>
-  <td><%= l timesheet.end, format: "%H:%M %d/%m" %></td>
+  <td><%= l timesheet.start, format: "%H:%M %d/%m/%Y" %></td>
+  <td><%= l timesheet.end, format: "%H:%M %d/%m/%Y" %></td>
   <td><%= Time.at(timesheet.end - timesheet.start).utc.strftime("%H:%M:%S") %></td>
   <td><%= timesheet.screenshots.size %></td>
   <td class="td-actions text-right">
-    <button type="button" rel="tooltip" class="btn btn-info btn-simple <%= "disabled" if timesheet.screenshots.size == 0 %>"
-      data-original-title="Screenshots"title="">
-      <i class="fa fa-file-image-o" aria-hidden="true"></i>
-    </button>
+    <% if timesheet.screenshots.size == 0 %>
+      <button type="button" rel="tooltip" class="btn btn-info btn-simple disabled"
+        data-original-title="Screenshots">
+        <i class="fa fa-file-image-o" aria-hidden="true"></i>
+      </button>
+    <% else %>
+      <button type="button" rel="tooltip" class="btn btn-info btn-simple btn-loadscr" data-id="<%= timesheet.id %>"
+        data-original-title="Screenshots" data-toggle="modal" href="#modal-images-timesheet">
+        <i class="fa fa-file-image-o" aria-hidden="true"></i>
+      </button>
+    <% end %>
   </td>
 </tr>

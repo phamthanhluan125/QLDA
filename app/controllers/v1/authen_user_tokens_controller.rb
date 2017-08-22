@@ -3,9 +3,13 @@ class V1::AuthenUserTokensController < ApplicationController
     user = User.find_by_email params[:user_email]
     if user.present?
       if user.valid_password? params[:password]
-        user.add_authentication_token
-        serialization = ActiveModelSerializers::SerializableResource.new user
-        response_success t("api.success"), serialization
+        if user.locked?
+          response_error "Tài khoản này đang bị khóa, hãy liên hệ với Manager."
+        else
+          user.add_authentication_token
+          serialization = ActiveModelSerializers::SerializableResource.new user
+          response_success t("api.success"), serialization
+        end
       else
         response_error "Mật khẩu không đúng"
       end

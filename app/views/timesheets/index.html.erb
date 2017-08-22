@@ -70,3 +70,25 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="modal-images-timesheet">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Danh sách screenshot trong phiên làm việc được chọn</h4>
+      </div>
+      <div class="modal-body">
+        <div class="load-model-scrs">
+          <%= render "model_scrs" %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Xong", "javascript:", class: "btn btn-default", "data-dismiss": "modal" %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= link_to timesheets_path(format: "xls"), id: "report-timesheet", class: "btn btn-primary" do %>
+  <%= "Tải về" %>
+<% end %>
+

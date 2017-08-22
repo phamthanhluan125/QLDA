@@ -42,6 +42,12 @@
         </ul>
       </div>
     </li>
+     <li>
+      <%= link_to roles_path do %>
+        <i class="fa fa-address-card" aria-hidden="true"></i>
+        <p>Quản lý chức vụ</p>
+      <% end %>
+    </li>
     <li>
       <%= link_to timesheets_path do %>
         <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -49,10 +55,20 @@
       <% end %>
     </li>
     <li>
-      <%= link_to "#" do %>
+      <a data-toggle="collapse" href="#pagesMesages">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
-        <p>Notifications</p>
-      <% end %>
+        <p>Quản lý message<b class="caret"></b></p>
+      </a>
+      <div class="collapse" id="pagesMesages">
+        <ul class="nav">
+          <li>
+            <%= link_to "Gửi messages", new_message_path %>
+          </li>
+          <li>
+            <%= link_to "Danh sách mesages", messages_path %>
+          </li>
+        </ul>
+      </div>
     </li>
   </ul>
 </div>

@@ -1,0 +1,20 @@
+<% if @scrs.present? %>
+  $('.load-model-scrs').html('<%= j render "model_scrs" %>')
+<% end %>
+
+$('.image-choosed').click(function(){
+  window.open($(this).attr('src'), '_blank');
+});
+
+$('.item-image').click(function(){
+  $(this).closest('.screenshot-image').find('.image-choosed').attr('src', $(this).attr('src'));
+  reset_select();
+  $(this).addClass('item-selected');
+  $('.image-time').html($(this).data('time'))
+});
+
+function reset_select() {
+  $('.screenshot-image-list').find('.item-image').each(function() {
+    $(this).removeClass('item-selected').animate('slow');
+  });
+}

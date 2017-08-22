@@ -90,10 +90,10 @@
         class: "#{check_btn_edit @project} btn btn-primary form-group margin-0 btn-show-modal" %>
       <%= link_to "Thêm công việc mới", "#modal-new-task", "data-toggle": "modal",
         class: "#{check_btn_edit @project} btn btn-primary form-group margin-0 btn-show-modal" %>
-      <%= link_to "Đánh dấu hoàn thành", "#",
+      <%= link_to "Đánh dấu hoàn thành", edit_project_path(@project.id, type: "finish"),
         class: "#{check_btn_edit @project} #{check_btn_finish_project @project}
         btn btn-primary form-group margin-0" %>
-      <%= link_to "Hủy dự án", "#",
+      <%= link_to "Hủy dự án", edit_project_path(@project.id, type: "cancel"),
         class: "#{check_btn_edit @project} btn btn-primary form-group margin-0" %>
     </div>
     <%= render "list_users" %>

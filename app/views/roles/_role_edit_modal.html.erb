@@ -1,0 +1,33 @@
+<div class="modal fade" id="list-user-<%= role.id %>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Danh sách nhân viên có chức vụ: <%= role.name %></h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped table-no-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Tên</th>
+              <th>Giới tính</th>
+              <th>Ngày tạo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% role.users.each do |u| %>
+              <tr>
+                <td><%= u.name %></td>
+                <td><%= u.gender? ? "Nữ" : "Nam" %></td>
+                <td><%= l u.created_at, format: "%d/%m/%Y" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Xong", "javascript:", class: "btn btn-default", "data-dismiss": "modal" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-Admin.create!(
+Manager.create!(
   name: "Pham Thanh Luan",
   email: "bo@gmail.com",
   birthday: "20/11/1990",
@@ -8,17 +8,17 @@ Admin.create!(
 Role.create!(
   id: 1,
   name: "Designer",
-  admin_id: 1
+  manager_id: 1
   )
 Role.create!(
   id: 2,
   name: "Tester",
-  admin_id: 1
+  manager_id: 1
   )
 Role.create!(
   id: 3,
   name: "Developer",
-  admin_id: 1
+  manager_id: 1
   )
 
 User.create!(
@@ -27,7 +27,7 @@ User.create!(
   birthday: "20/11/1990",
   time_scr: 5,
   role_id: 1,
-  admin_id: 1,
+  manager_id: 1,
   password: "Aa@123",
   password_confirmation: "Aa@123",
   authentication_token: Devise.friendly_token
@@ -38,7 +38,7 @@ User.create!(
   birthday: "20/11/1990",
   time_scr: 5,
   role_id: 2,
-  admin_id: 1,
+  manager_id: 1,
   password: "Aa@123",
   password_confirmation: "Aa@123",
   authentication_token: Devise.friendly_token
@@ -49,7 +49,7 @@ User.create!(
   birthday: "20/11/1990",
   time_scr: 5,
   role_id: 2,
-  admin_id: 1,
+  manager_id: 1,
   password: "Aa@123",
   password_confirmation: "Aa@123",
   authentication_token: Devise.friendly_token
@@ -60,7 +60,7 @@ User.create!(
   birthday: "20/11/1990",
   time_scr: 5,
   role_id: 2,
-  admin_id: 1,
+  manager_id: 1,
   password: "Aa@123",
   password_confirmation: "Aa@123",
   authentication_token: Devise.friendly_token
@@ -71,7 +71,7 @@ User.create!(
   birthday: "20/11/1990",
   time_scr: 5,
   role_id: 2,
-  admin_id: 1,
+  manager_id: 1,
   password: "Aa@123",
   password_confirmation: "Aa@123",
   authentication_token: Devise.friendly_token
@@ -81,26 +81,26 @@ Project.create!(
   info: "Xây dựng website trường học ABC Đà Nẵng",
   start_date: "1/08/2016",
   deadline: "01/7/2017",
-  admin_id: 1
+  manager_id: 1
   )
 Project.create!(
   name: "Phầm mềm quản lý thư viện trường đai học ĐÔNG TÂY",
   info: "Phầm mềm quản lý thư viện trường đai học ĐÔNG TÂY",
   start_date: "1/10/2017",
   deadline: "01/7/2018",
-  admin_id: 1
+  manager_id: 1
   )
 Project.create!(
   name: "Ứng dụng quản cáo trên di dộng M-Share",
   info: "Ứng dụng quản cáo trên di dộng M-Share",
   start_date: "1/08/2017",
   deadline: "01/12/2017",
-  admin_id: 1
+  manager_id: 1
   )
 Project.create!(
   name: "Website thương mại công ty NAM Á",
   info: "",
   start_date: "1/08/2016",
   deadline: "01/7/2017",
-  admin_id: 1
+  manager_id: 1
   )

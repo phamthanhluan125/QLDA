@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170801133309) do
 
-  create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "managers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.date     "birthday"
     t.boolean  "gender",                 default: false
@@ -31,19 +31,20 @@ ActiveRecord::Schema.define(version: 20170801133309) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.index ["email"], name: "index_admins_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+    t.index ["email"], name: "index_managers_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_managers_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "massanges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "info",       limit: 65535
-    t.integer  "status"
-    t.integer  "from_id"
-    t.integer  "to_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.index ["from_id"], name: "index_massanges_on_from_id", using: :btree
-    t.index ["to_id"], name: "index_massanges_on_to_id", using: :btree
+  create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title"
+    t.text     "info",           limit: 65535
+    t.integer  "status",                       default: 0
+    t.string   "fromtable_type"
+    t.integer  "fromtable_id"
+    t.string   "to"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.index ["fromtable_type", "fromtable_id"], name: "index_messages_on_fromtable_type_and_fromtable_id", using: :btree
   end
 
   create_table "project_managers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -64,22 +65,22 @@ ActiveRecord::Schema.define(version: 20170801133309) do
     t.date     "deadline"
     t.date     "finish_date"
     t.integer  "status"
-    t.integer  "admin_id"
+    t.integer  "manager_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.datetime "deleted_at"
-    t.index ["admin_id"], name: "index_projects_on_admin_id", using: :btree
     t.index ["deleted_at"], name: "index_projects_on_deleted_at", using: :btree
+    t.index ["manager_id"], name: "index_projects_on_manager_id", using: :btree
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.text     "info",       limit: 65535
     t.string   "icon"
-    t.integer  "admin_id"
+    t.integer  "manager_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.index ["admin_id"], name: "index_roles_on_admin_id", using: :btree
+    t.index ["manager_id"], name: "index_roles_on_manager_id", using: :btree
   end
 
   create_table "screenshots", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -142,7 +143,7 @@ ActiveRecord::Schema.define(version: 20170801133309) do
     t.integer  "time_scr"
     t.integer  "status",                            default: 0
     t.integer  "role_id"
-    t.integer  "admin_id"
+    t.integer  "manager_id"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
     t.string   "email",                             default: "",    null: false
@@ -156,23 +157,23 @@ ActiveRecord::Schema.define(version: 20170801133309) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "authentication_token",   limit: 30
-    t.index ["admin_id"], name: "index_users_on_admin_id", using: :btree
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["manager_id"], name: "index_users_on_manager_id", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["role_id"], name: "index_users_on_role_id", using: :btree
   end
 
   add_foreign_key "project_managers", "projects"
   add_foreign_key "project_managers", "users"
-  add_foreign_key "projects", "admins"
-  add_foreign_key "roles", "admins"
+  add_foreign_key "projects", "managers"
+  add_foreign_key "roles", "managers"
   add_foreign_key "screenshots", "timesheets"
   add_foreign_key "task_managers", "tasks"
   add_foreign_key "task_managers", "users"
   add_foreign_key "tasks", "projects"
   add_foreign_key "timesheets", "projects"
   add_foreign_key "timesheets", "users"
-  add_foreign_key "users", "admins"
+  add_foreign_key "users", "managers"
   add_foreign_key "users", "roles"
 end

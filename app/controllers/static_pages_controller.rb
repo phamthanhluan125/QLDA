@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
 layout "login", only: :login
   def index
-    if admin_signed_in?
+    if manager_signed_in?
       load_data_project_chart
       load_data_task_chart
     else
@@ -10,12 +10,12 @@ layout "login", only: :login
   end
 
   def login
-    redirect_to new_admin_session_path
+    redirect_to new_manager_session_path
   end
 
   private
   def load_data_project_chart
-    all = current_admin.projects
+    all = current_manager.projects
     count_all = all.size * 1.0
     @project_chart = []
     @project_chart << {name: "Chưa bắt đầu", y: all.pending.size / count_all,
@@ -31,7 +31,7 @@ layout "login", only: :login
   end
 
   def load_data_task_chart
-    all = Task.of_project current_admin.projects.map(&:id)
+    all = Task.of_project current_manager.projects.map(&:id)
     count_all = all.size * 1.0
     @task_chart = []
     @task_chart << {name: "Chưa bắt đầu", y: all.pending.size / count_all,

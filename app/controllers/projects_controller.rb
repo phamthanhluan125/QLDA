@@ -1,12 +1,34 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_admin!
-  before_action :load_project, only: [:update, :show]
+  before_action :authenticate_manager!
+  before_action :load_project, only: [:update, :show, :edit]
 
   def index
-    @projects = Project.of_admin current_admin.id
+    @projects = Project.of_manager current_manager.id
   end
 
   def new
+  end
+
+  def edit
+    case
+    when params[:type] == Settings.update.finish
+      if (@project.tasks.finish.size + @project.tasks.cancel.size) == @project.tasks.size
+        if @project.update_attributes status: :finish, finish_date: Date.today
+          flash[:success] = "Đã đánh dấu hoàn thành."
+        else
+          flash[:danger] = "Thất bại"
+        end
+      else
+        flash[:danger] = "Không thể đánh dấu hoàn thành khi vẫn còn #{@project.tasks.size - @project.tasks.finish.size + @project.tasks.cancel.size} công việc chưa được hoàn thành."
+      end
+    when params[:type] == Settings.update.cancel
+      if @project.update_attributes status: :cancel, finish_date: Date.today
+        flash[:success] = "Hủy thành công."
+      else
+        flash[:danger] = "Thất bại"
+      end
+    end
+    redirect_to project_path(@project.id)
   end
 
   def show
@@ -38,7 +60,7 @@ class ProjectsController < ApplicationController
 
   private
   def new_project_params
-    params.require(:project).permit(:name, :info, :start_date, :deadline).merge admin_id: current_admin.id
+    params.require(:project).permit(:name, :info, :start_date, :deadline).merge manager_id: current_manager.id
   end
 
   def project_params

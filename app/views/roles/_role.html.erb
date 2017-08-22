@@ -1,0 +1,68 @@
+<tr class="user-item">
+  <td><%= role.name %></td>
+  <td><%= role.info %></td>
+  <td><%= role.users.size %></td>
+  <td><%= l role.created_at, format: "%d/%m/%Y" %></td>
+  <td class="td-actions text-right">
+    <button type="button" rel="tooltip" title="" class="btn-user-edit btn
+      btn-success btn-simple btn-xs btn-show-modal"
+      data-original-title="Chỉnh sửa thông tin" data-toggle="modal" href="#modal-edit-role-<%= role.id %>">
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      <div class="ripple-container"></div>
+    </button>
+    <button type="button" rel="tooltip" title="" class="btn-user-edit btn
+      btn-primary btn-simple btn-xs btn-show-modal"
+      data-original-title="Danh sách nhân viên" data-toggle="modal" href="#list-user-<%= role.id%>">
+      <i class="fa fa-user" aria-hidden="true"></i>
+      <div class="ripple-container"></div>
+    </button>
+    <%= link_to role_path(role.id), method: :delete, class: "btn btn-danger btn-simple",
+      "data-original-title": "Xóa", "data-confirm": "Bạn có chắc chắn xóa???", rel: "tooltip"  do %>
+      <i class="fa fa-user-times" aria-hidden="true"></i>
+    <% end %>
+  </td>
+</tr>
+
+<%= form_for role, url: role_path(role.id), method: :put do |f| %>
+<div class="modal fade" id="modal-edit-role-<%= role.id %>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Thêm Mới Chức Vụ</h4>
+      </div>
+      <div class="modal-body height-auto">
+        <div class="card">
+          <div class="card-content">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group label-floating is-empty">
+                    <label class="control-label">Tên</label>
+                    <%= f.text_field :name, required: true, class: "form-control" %>
+                    <span class="material-input"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group label-floating is-empty">
+                    <label class="control-label">Mô tả</label>
+                    <%= f.text_field :info, maxlength: 100, minlength: 6, class: "form-control" %>
+                    <span class="material-input"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+        <%= f.submit "Cập nhật", class: "btn btn-primary pull-right" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
