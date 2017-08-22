@@ -7,7 +7,7 @@ class V1::TimesheetsController < V1::BaseController
   end
 
   def create
-    if @user.projects.present?
+    if current_user.projects.present?
       timesheet = Timesheet.new project_id: current_user.projects.first.id,
         user_id: current_user.id, start: DateTime.now, end: DateTime.now
       if timesheet.save

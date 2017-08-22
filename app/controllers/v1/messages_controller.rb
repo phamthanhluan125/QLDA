@@ -2,12 +2,13 @@ class V1::MessagesController < V1::BaseController
   skip_before_filter :verify_authenticity_token, only: :create
   before_action :load_message, only: :update
   def create
-    params[:list_email].each do |e|
+    binding.pry
+    params[:list_email].split(',').each do |e|
       m = current_user.messages.new scr_params
       m.to = e
       m.save
     end
-    response_success "Thành công"
+    response_success "Thành công", params[:list_email].split(',').size
   end
 
   def update
@@ -57,10 +58,10 @@ class V1::MessagesController < V1::BaseController
     resulf = []
     messages = Message.htd current_user.email
     if messages.present?
-      binding.pry
       messages.each do |m|
         name = m.fromtable_type == "User" ? m.user.name : m.manager.name
-        resulf << {id: m.id, name: name, created_at: m.created_at, status: m.status, title: m.title, info: m.info}
+        role =  m.fromtable_type == "User" ? m.user.role.name : "MANAGER"
+        resulf << {id: m.id, name: "#{name} - #{role}", created_at: m.created_at, status: m.status, title: m.title, info: m.info}
       end
     end
     resulf
@@ -70,7 +71,6 @@ class V1::MessagesController < V1::BaseController
     resulf = []
     messages = current_user.messages
     if messages.present?
-      binding.pry
       messages.each do |m|
         item = User.find_by email: m.to
         unless item.present?

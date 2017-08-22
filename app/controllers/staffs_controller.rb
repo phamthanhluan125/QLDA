@@ -18,6 +18,7 @@ class StaffsController < ApplicationController
   end
 
   def new
+    @user = User.new
     @roles = Role.of_manager current_manager.id
   end
 
@@ -63,11 +64,13 @@ class StaffsController < ApplicationController
   end
 
   def check_email
+    @user = User.new new_user_params
+    @roles = Role.of_manager current_manager.id
     user = User.find_by email: params[:user][:email]
     manager = Manager.find_by email: params[:user][:email]
     if user.present? || manager.present?
       flash[:danger] = "Email này đã tồn tại, vui lòng chọn email khác"
-      redirect_to new_staff_path
+      render :new
     end
   end
 end

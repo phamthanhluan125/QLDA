@@ -1,6 +1,11 @@
 <tr class="user-item">
-  <td><%= image_tag message.user.avatar.present? ? user.avatar : "avatar-default", class: "user-avatar" %></td>
-  <td><%= @type.present? ? message.user_mail.name : message.user.name %></td>
+  <% if @type.present? %>
+    <td><%= image_tag message.user_mail.avatar.present? ? message.user_mail.avatar : "avatar-default", class: "user-avatar" %></td>
+    <td><%= message.user_mail.name %></td>
+  <% else %>
+    <td><%= image_tag message.user.avatar.present? ? message.user.avatar : "avatar-default", class: "user-avatar" %></td>
+    <td><%= message.user.name %></td>
+  <% end %>
   <td><%= l message.created_at, format: "%H:%M %d/%m/%Y" %></td>
   <td><%= message.title.present? ? message.title : "Không có tiêu đề" %></td>
   <td><%= truncate message.info, length: 20 %></td>
