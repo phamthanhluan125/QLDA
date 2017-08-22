@@ -6,3 +6,4 @@ before script:
   - npm install -g bower
   - bower install
 script: gulp test
+env: RAILS_ENV=test SECRET_KEY_BASE="$(bundle exec rake secret)"
